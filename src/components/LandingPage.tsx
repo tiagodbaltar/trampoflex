@@ -56,9 +56,11 @@ export default function LandingPage({ onLoginClick, onSignupClick, onPostTaskCli
             <div className="order-1 lg:order-2">
               <div className="max-w-lg">
                 <h1 className="text-4xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-                  FAÇA MAIS
+                  TUDO O QUE VOCÊ
                   <br />
-                  <span className="text-green-600">ACONTECER</span>
+                  <span className="text-green-600">PRECISA</span>
+                  <br />
+                  EM UM SÓ LUGAR
                 </h1>
                 <p className="text-xl lg:text-2xl text-gray-600 mb-8 leading-relaxed">
                   Simples assim: você publica, os profissionais se candidatam e você contrata o melhor!
@@ -80,22 +82,6 @@ export default function LandingPage({ onLoginClick, onSignupClick, onPostTaskCli
                     Ganhe dinheiro como Profissional
                     <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
                   </button>
-                </div>
-
-                {/* Trust Indicators */}
-                <div className="grid grid-cols-3 gap-4 text-center">
-                  <div>
-                    <div className="text-2xl font-bold text-gray-900 mb-1">1M+</div>
-                    <div className="text-sm text-gray-600">clientes</div>
-                  </div>
-                  <div>
-                    <div className="text-2xl font-bold text-gray-900 mb-1">2.5M+</div>
-                    <div className="text-sm text-gray-600">tarefas feitas</div>
-                  </div>
-                  <div>
-                    <div className="text-2xl font-bold text-gray-900 mb-1">4M+</div>
-                    <div className="text-sm text-gray-600">avaliações</div>
-                  </div>
                 </div>
               </div>
             </div>

@@ -30,6 +30,26 @@ const mockUsers: User[] = [
     avatar: 'https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=150&h=150&fit=crop',
     rating: 4.8,
     completedTasks: 31
+  },
+  {
+    id: '4',
+    name: 'João Silva',
+    email: 'joao@email.com',
+    phone: '(85) 99123-4567',
+    userType: 'client',
+    avatar: 'https://images.pexels.com/photos/1043471/pexels-photo-1043471.jpeg?auto=compress&cs=tinysrgb&w=150&h=150&fit=crop',
+    rating: 4.6,
+    completedTasks: 12
+  },
+  {
+    id: '5',
+    name: 'Fernanda Lima',
+    email: 'fernanda@email.com',
+    phone: '(31) 98765-4321',
+    userType: 'client',
+    avatar: 'https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=150&h=150&fit=crop',
+    rating: 4.9,
+    completedTasks: 27
   }
 ];
 
@@ -56,7 +76,7 @@ export const mockTasks: Task[] = [
     postedBy: mockUsers[0],
     offers: [],
     createdAt: '2024-12-10T10:00:00Z',
-    category: 'Casa & Jardim'
+    category: 'Limpeza'
   },
   {
     id: '2',
@@ -172,5 +192,143 @@ export const mockTasks: Task[] = [
     offers: [],
     createdAt: '2024-12-06T08:30:00Z',
     category: 'Casa & Jardim'
+  },
+  {
+    id: '7',
+    title: 'Desenvolvimento de site institucional',
+    description: 'Preciso de um site institucional para minha empresa de consultoria. Deve ter design moderno, responsivo e otimizado para SEO. Inclui páginas: home, sobre, serviços, contato.',
+    budget: 2500,
+    date: '2024-12-25',
+    isFlexible: true,
+    location: {
+      state: 'Ceará',
+      city: 'Fortaleza',
+      neighborhood: 'Aldeota',
+      lat: -3.7319,
+      lng: -38.5267
+    },
+    images: [
+      'https://images.pexels.com/photos/196644/pexels-photo-196644.jpeg?auto=compress&cs=tinysrgb&w=800'
+    ],
+    status: 'open',
+    postedBy: mockUsers[3],
+    offers: [],
+    createdAt: '2024-12-05T13:45:00Z',
+    category: 'Tecnologia'
+  },
+  {
+    id: '8',
+    title: 'Organização de festa de aniversário',
+    description: 'Festa de 15 anos para minha filha. Preciso de decoração, buffet, som e animação. Evento para 80 pessoas. Local já definido. Tema: jardim encantado.',
+    budget: 3500,
+    date: '2024-12-30',
+    isFlexible: false,
+    location: {
+      state: 'Minas Gerais',
+      city: 'Belo Horizonte',
+      neighborhood: 'Savassi',
+      lat: -19.9167,
+      lng: -43.9345
+    },
+    images: [
+      'https://images.pexels.com/photos/1190298/pexels-photo-1190298.jpeg?auto=compress&cs=tinysrgb&w=800'
+    ],
+    status: 'open',
+    postedBy: mockUsers[4],
+    offers: [],
+    createdAt: '2024-12-04T16:20:00Z',
+    category: 'Eventos'
+  },
+  {
+    id: '9',
+    title: 'Tradução de documentos técnicos',
+    description: 'Preciso traduzir manuais técnicos do inglês para português. São 50 páginas de conteúdo sobre equipamentos industriais. Prazo de 10 dias.',
+    budget: 800,
+    date: '2024-12-22',
+    isFlexible: true,
+    location: {
+      state: 'Rio Grande do Sul',
+      city: 'Porto Alegre',
+      neighborhood: 'Centro',
+      lat: -30.0346,
+      lng: -51.2177
+    },
+    images: [
+      'https://images.pexels.com/photos/159711/books-bookstore-book-reading-159711.jpeg?auto=compress&cs=tinysrgb&w=800'
+    ],
+    status: 'open',
+    postedBy: mockUsers[0],
+    offers: [],
+    createdAt: '2024-12-03T09:30:00Z',
+    category: 'Tradução'
+  },
+  {
+    id: '10',
+    title: 'Sessão de fotos para produtos',
+    description: 'Preciso de fotos profissionais para catálogo de produtos artesanais. São 30 peças diferentes. Estúdio com iluminação adequada necessário.',
+    budget: 600,
+    date: '2024-12-17',
+    isFlexible: true,
+    location: {
+      state: 'Bahia',
+      city: 'Salvador',
+      neighborhood: 'Pelourinho',
+      lat: -12.9714,
+      lng: -38.5014
+    },
+    images: [
+      'https://images.pexels.com/photos/90946/pexels-photo-90946.jpeg?auto=compress&cs=tinysrgb&w=800'
+    ],
+    status: 'open',
+    postedBy: mockUsers[1],
+    offers: [],
+    createdAt: '2024-12-02T14:15:00Z',
+    category: 'Fotografia'
+  },
+  {
+    id: '11',
+    title: 'Personal trainer para exercícios em casa',
+    description: 'Busco personal trainer para treinos 3x por semana em casa. Foco em condicionamento físico e perda de peso. Tenho alguns equipamentos básicos.',
+    budget: 400,
+    date: '2024-12-14',
+    isFlexible: true,
+    location: {
+      state: 'Distrito Federal',
+      city: 'Brasília',
+      neighborhood: 'Asa Norte',
+      lat: -15.7801,
+      lng: -47.9292
+    },
+    images: [
+      'https://images.pexels.com/photos/416778/pexels-photo-416778.jpeg?auto=compress&cs=tinysrgb&w=800'
+    ],
+    status: 'open',
+    postedBy: mockUsers[2],
+    offers: [],
+    createdAt: '2024-12-01T11:00:00Z',
+    category: 'Beleza & Bem-estar'
+  },
+  {
+    id: '12',
+    title: 'Consultoria em marketing digital',
+    description: 'Pequena empresa precisa de consultoria para melhorar presença digital. Inclui análise de redes sociais, estratégia de conteúdo e campanhas pagas.',
+    budget: 1200,
+    date: '2024-12-21',
+    isFlexible: true,
+    location: {
+      state: 'Paraná',
+      city: 'Curitiba',
+      neighborhood: 'Batel',
+      lat: -25.4284,
+      lng: -49.2733
+    },
+    images: [
+      'https://images.pexels.com/photos/265087/pexels-photo-265087.jpeg?auto=compress&cs=tinysrgb&w=800'
+    ],
+    status: 'open',
+    postedBy: mockUsers[3],
+    offers: [],
+    createdAt: '2024-11-30T15:45:00Z',
+    category: 'Marketing Digital'
   }
 ];

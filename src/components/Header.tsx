@@ -8,6 +8,9 @@ interface HeaderProps {
   onPostTaskClick: () => void;
   onFindWorkClick?: () => void;
   onBrowseTasksClick?: () => void;
+  onHowItWorksClick?: () => void;
+  onSupportClick?: () => void;
+  onHomeClick?: () => void;
 }
 
 // Toucan Logo Component
@@ -43,7 +46,10 @@ export default function Header({
   onSignupClick, 
   onPostTaskClick, 
   onFindWorkClick, 
-  onBrowseTasksClick 
+  onBrowseTasksClick,
+  onHowItWorksClick,
+  onSupportClick,
+  onHomeClick
 }: HeaderProps) {
   const { user, logout } = useAuth();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -54,12 +60,15 @@ export default function Header({
         <div className="flex justify-between items-center py-4">
           {/* Logo */}
           <div className="flex items-center">
-            <div className="flex items-center space-x-3">
+            <button 
+              onClick={onHomeClick}
+              className="flex items-center space-x-3 hover:opacity-80 transition-opacity"
+            >
               <ToucanLogo className="w-10 h-10" />
               <span className="text-2xl font-bold bg-gradient-to-r from-green-600 to-yellow-500 bg-clip-text text-transparent">
                 TrampoFlex
               </span>
-            </div>
+            </button>
           </div>
 
           {/* Desktop Navigation */}
@@ -84,12 +93,18 @@ export default function Header({
                 Encontrar Trabalho
               </button>
             )}
-            <a href="#" className="text-gray-600 hover:text-green-600 transition-colors">
+            <button 
+              onClick={onHowItWorksClick}
+              className="text-gray-600 hover:text-green-600 transition-colors"
+            >
               Como Funciona
-            </a>
-            <a href="#" className="text-gray-600 hover:text-green-600 transition-colors">
+            </button>
+            <button 
+              onClick={onSupportClick}
+              className="text-gray-600 hover:text-green-600 transition-colors"
+            >
               Suporte
-            </a>
+            </button>
           </nav>
 
           {/* Desktop Auth Buttons */}
@@ -170,12 +185,18 @@ export default function Header({
                   Encontrar Trabalho
                 </button>
               )}
-              <a href="#" className="text-gray-600 hover:text-green-600 transition-colors">
+              <button 
+                onClick={onHowItWorksClick}
+                className="text-left text-gray-600 hover:text-green-600 transition-colors"
+              >
                 Como Funciona
-              </a>
-              <a href="#" className="text-gray-600 hover:text-green-600 transition-colors">
+              </button>
+              <button 
+                onClick={onSupportClick}
+                className="text-left text-gray-600 hover:text-green-600 transition-colors"
+              >
                 Suporte
-              </a>
+              </button>
               <div className="pt-4 border-t">
                 {user ? (
                   <div className="space-y-2">

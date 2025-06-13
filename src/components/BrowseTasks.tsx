@@ -1,11 +1,11 @@
 import React, { useState, useMemo } from 'react';
-import { Search, MapPin, Calendar, DollarSign, User, MessageCircle, X, Filter, Map, Star } from 'lucide-react';
+import { Search, MapPin, Calendar, DollarSign, User, MessageCircle, Filter, Map, Star } from 'lucide-react';
 import { mockTasks } from '../data/mockTasks';
 import { Task } from '../types';
 import { useAuth } from '../context/AuthContext';
 
 interface BrowseTasksProps {
-  onClose: () => void;
+  onClose?: () => void;
 }
 
 export default function BrowseTasks({ onClose }: BrowseTasksProps) {
@@ -24,15 +24,45 @@ export default function BrowseTasks({ onClose }: BrowseTasksProps) {
     'Design & Arte',
     'Tecnologia',
     'Educação',
-    'Transporte'
+    'Transporte',
+    'Limpeza',
+    'Culinária',
+    'Eventos',
+    'Beleza & Bem-estar',
+    'Consultoria',
+    'Tradução',
+    'Fotografia',
+    'Marketing Digital'
   ];
 
-  const locations = [
-    'São Paulo - SP',
+  const brazilianStates = [
+    'Acre - AC',
+    'Alagoas - AL',
+    'Amapá - AP',
+    'Amazonas - AM',
+    'Bahia - BA',
+    'Ceará - CE',
+    'Distrito Federal - DF',
+    'Espírito Santo - ES',
+    'Goiás - GO',
+    'Maranhão - MA',
+    'Mato Grosso - MT',
+    'Mato Grosso do Sul - MS',
+    'Minas Gerais - MG',
+    'Pará - PA',
+    'Paraíba - PB',
+    'Paraná - PR',
+    'Pernambuco - PE',
+    'Piauí - PI',
     'Rio de Janeiro - RJ',
-    'Belo Horizonte - MG',
-    'Salvador - BA',
-    'Brasília - DF'
+    'Rio Grande do Norte - RN',
+    'Rio Grande do Sul - RS',
+    'Rondônia - RO',
+    'Roraima - RR',
+    'Santa Catarina - SC',
+    'São Paulo - SP',
+    'Sergipe - SE',
+    'Tocantins - TO'
   ];
 
   const sortOptions = [
@@ -48,7 +78,7 @@ export default function BrowseTasks({ onClose }: BrowseTasksProps) {
                            task.description.toLowerCase().includes(searchTerm.toLowerCase());
       const matchesCategory = !selectedCategory || task.category === selectedCategory;
       const matchesLocation = !selectedLocation || 
-                             `${task.location.city} - ${task.location.state}` === selectedLocation;
+                             `${task.location.state} - ${task.location.state.substring(0, 2).toUpperCase()}` === selectedLocation;
       const matchesPrice = (!priceRange.min || task.budget >= parseInt(priceRange.min)) &&
                           (!priceRange.max || task.budget <= parseInt(priceRange.max));
       
@@ -138,21 +168,13 @@ export default function BrowseTasks({ onClose }: BrowseTasksProps) {
   );
 
   return (
-    <div className="fixed inset-0 bg-white z-50 overflow-y-auto">
-      {/* Header */}
-      <div className="sticky top-0 bg-white border-b border-gray-200 p-4 z-10">
-        <div className="max-w-7xl mx-auto flex justify-between items-center">
-          <h1 className="text-2xl font-bold text-gray-900">Procurar Tarefas</h1>
-          <button
-            onClick={onClose}
-            className="p-2 hover:bg-gray-100 rounded-full transition-colors"
-          >
-            <X className="h-6 w-6 text-gray-500" />
-          </button>
-        </div>
-      </div>
-
+    <div className="min-h-screen bg-white">
       <div className="max-w-7xl mx-auto p-4">
+        <div className="mb-8">
+          <h1 className="text-3xl font-bold text-gray-900 mb-2">Procurar Tarefas</h1>
+          <p className="text-gray-600">Encontre oportunidades de trabalho em todo o Brasil</p>
+        </div>
+
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
           {/* Filters Sidebar */}
           <div className="lg:col-span-1">
@@ -199,16 +221,16 @@ export default function BrowseTasks({ onClose }: BrowseTasksProps) {
               {/* Location Filter */}
               <div className="mb-6">
                 <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Localização
+                  Estado
                 </label>
                 <select
                   value={selectedLocation}
                   onChange={(e) => setSelectedLocation(e.target.value)}
                   className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
                 >
-                  <option value="">Todas as localizações</option>
-                  {locations.map(location => (
-                    <option key={location} value={location}>{location}</option>
+                  <option value="">Todos os estados</option>
+                  {brazilianStates.map(state => (
+                    <option key={state} value={state}>{state}</option>
                   ))}
                 </select>
               </div>
@@ -334,7 +356,7 @@ export default function BrowseTasks({ onClose }: BrowseTasksProps) {
                   onClick={() => setSelectedTask(null)}
                   className="p-2 hover:bg-gray-100 rounded-full transition-colors"
                 >
-                  <X className="h-6 w-6 text-gray-500" />
+                  ×
                 </button>
               </div>
 
