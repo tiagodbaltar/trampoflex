@@ -176,7 +176,7 @@ export default function Support() {
         {/* Quick Stats */}
         <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
           <div className="bg-white p-6 rounded-2xl shadow-lg border border-gray-100">
-            <div className="text-3xl font-bold text-green-600 mb-2">< 2h</div>
+            <div className="text-3xl font-bold text-green-600 mb-2">{"< 2h"}</div>
             <div className="text-gray-600">Tempo médio de resposta</div>
           </div>
           <div className="bg-white p-6 rounded-2xl shadow-lg border border-gray-100">
@@ -190,6 +190,5 @@ export default function Support() {
         </div>
       </div>
     </div>
-  )
   );
 }
