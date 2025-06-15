@@ -1,25 +1,21 @@
 import React, { useState } from 'react';
 import { 
-  Search, 
   FileText, 
   Users, 
-  MessageCircle, 
+  UserCheck, 
   CheckCircle, 
   Star,
   Shield,
-  CreditCard,
-  Clock,
-  MapPin,
-  Camera,
-  UserCheck,
-  Play,
+  MessageCircle,
   ChevronDown,
   ChevronUp,
-  Quote
+  Quote,
+  Search,
+  Clock
 } from 'lucide-react';
+import Footer from './Footer';
 
 export default function HowItWorks() {
-  const [activeStep, setActiveStep] = useState(0);
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
   const clientSteps = [
@@ -150,51 +146,31 @@ export default function HowItWorks() {
 
   const faqs = [
     {
-      question: 'Como funciona o pagamento?',
-      answer: 'O pagamento é feito diretamente ao profissional após a conclusão do serviço. Você pode negociar a forma de pagamento (dinheiro, PIX, cartão) diretamente com o prestador de serviço.'
-    },
-    {
-      question: 'Os profissionais são verificados?',
-      answer: 'Sim, todos os profissionais passam por um processo de verificação de identidade e documentos. Além disso, o sistema de avaliações garante a qualidade dos serviços.'
-    },
-    {
-      question: 'Posso cancelar uma tarefa?',
-      answer: 'Sim, você pode cancelar uma tarefa antes de aceitar uma proposta. Após aceitar, recomendamos conversar com o profissional para encontrar a melhor solução.'
-    },
-    {
       question: 'Como escolher o melhor profissional?',
       answer: 'Analise as propostas, verifique as avaliações anteriores, veja o portfólio e converse com os candidatos antes de tomar sua decisão.'
     },
     {
       question: 'Existe alguma taxa para usar a plataforma?',
-      answer: 'Para clientes, a plataforma é completamente gratuita. Para profissionais, cobramos uma pequena taxa apenas quando você consegue um trabalho.'
+      answer: 'Não, é completamente gratuito.'
     },
     {
-      question: 'E se eu não ficar satisfeito com o serviço?',
-      answer: 'Temos uma equipe de suporte dedicada para resolver conflitos. Entre em contato conosco e trabalharemos para encontrar uma solução justa.'
+      question: 'Posso cancelar uma tarefa?',
+      answer: 'Sim, você pode cancelar uma tarefa antes de aceitar uma proposta. Após aceitar, recomendamos conversar com o profissional para encontrar a melhor solução.'
     }
   ];
 
   const safetyFeatures = [
     {
       icon: Shield,
-      title: 'Perfis Verificados',
-      description: 'Todos os profissionais passam por verificação de identidade e documentos.'
+      title: 'Perfis Verificados'
     },
     {
       icon: Star,
-      title: 'Sistema de Avaliações',
-      description: 'Avaliações reais de clientes anteriores para garantir qualidade.'
+      title: 'Sistema de Avaliações'
     },
     {
       icon: MessageCircle,
-      title: 'Chat Seguro',
-      description: 'Comunicação protegida através da plataforma até a contratação.'
-    },
-    {
-      icon: CreditCard,
-      title: 'Pagamento Protegido',
-      description: 'Pagamento direto ao profissional após confirmação do serviço.'
+      title: 'Chat Seguro'
     }
   ];
 
@@ -210,23 +186,10 @@ export default function HowItWorks() {
           <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
             Conectamos clientes que precisam de serviços com profissionais qualificados de forma simples, rápida e segura.
           </p>
-          
-          {/* Video Tutorial */}
-          <div className="max-w-2xl mx-auto">
-            <div className="bg-white rounded-2xl shadow-xl p-8 border border-gray-100">
-              <div className="relative bg-gradient-to-br from-green-500 to-blue-600 rounded-xl h-64 flex items-center justify-center mb-4">
-                <button className="bg-white/20 backdrop-blur-sm rounded-full p-6 hover:bg-white/30 transition-all duration-300 transform hover:scale-110">
-                  <Play className="h-12 w-12 text-white ml-1" />
-                </button>
-              </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-2">Vídeo Tutorial</h3>
-              <p className="text-gray-600">Aprenda em 3 minutos como usar a plataforma</p>
-            </div>
-          </div>
         </div>
       </section>
 
-      {/* Interactive Steps - Para Clientes */}
+      {/* Para Clientes - Two Column Layout */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
@@ -239,32 +202,24 @@ export default function HowItWorks() {
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            {/* Steps Navigation */}
-            <div className="space-y-4">
+            {/* Left Column - Steps */}
+            <div className="space-y-6">
               {clientSteps.map((step, index) => {
                 const IconComponent = step.icon;
-                const isActive = activeStep === index;
                 return (
                   <div
                     key={index}
-                    className={`p-6 rounded-xl cursor-pointer transition-all duration-300 transform hover:scale-105 ${
-                      isActive 
-                        ? 'bg-gradient-to-r ' + step.color + ' text-white shadow-xl' 
-                        : 'bg-gray-50 hover:bg-gray-100'
-                    }`}
-                    onClick={() => setActiveStep(index)}
+                    className="p-6 rounded-xl bg-gray-50 hover:bg-gray-100 transition-all duration-300"
                   >
                     <div className="flex items-center space-x-4">
-                      <div className={`w-12 h-12 rounded-full flex items-center justify-center ${
-                        isActive ? 'bg-white/20' : 'bg-white'
-                      }`}>
-                        <IconComponent className={`h-6 w-6 ${isActive ? 'text-white' : 'text-gray-600'}`} />
+                      <div className={`w-12 h-12 rounded-full bg-gradient-to-r ${step.color} flex items-center justify-center`}>
+                        <IconComponent className="h-6 w-6 text-white" />
                       </div>
                       <div className="flex-1">
-                        <h3 className={`text-lg font-semibold ${isActive ? 'text-white' : 'text-gray-900'}`}>
+                        <h3 className="text-lg font-semibold text-gray-900">
                           {step.title}
                         </h3>
-                        <p className={`text-sm ${isActive ? 'text-white/90' : 'text-gray-600'}`}>
+                        <p className="text-sm text-gray-600">
                           {step.description}
                         </p>
                       </div>
@@ -274,25 +229,16 @@ export default function HowItWorks() {
               })}
             </div>
 
-            {/* Step Details */}
-            <div className="bg-gradient-to-br from-gray-50 to-white rounded-2xl p-8 shadow-lg border border-gray-100">
-              <div className={`w-16 h-16 rounded-full bg-gradient-to-r ${clientSteps[activeStep].color} flex items-center justify-center mb-6`}>
-                {React.createElement(clientSteps[activeStep].icon, { className: "h-8 w-8 text-white" })}
+            {/* Right Column - Image */}
+            <div className="relative">
+              <div className="relative rounded-2xl overflow-hidden shadow-2xl">
+                <img 
+                  src="https://images.pexels.com/photos/1669799/pexels-photo-1669799.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop"
+                  alt="Pessoas pintando uma parede"
+                  className="w-full h-[500px] lg:h-[600px] object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
               </div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">
-                {clientSteps[activeStep].title}
-              </h3>
-              <p className="text-gray-600 mb-6 text-lg">
-                {clientSteps[activeStep].description}
-              </p>
-              <ul className="space-y-3">
-                {clientSteps[activeStep].details.map((detail, detailIndex) => (
-                  <li key={detailIndex} className="flex items-start">
-                    <CheckCircle className="h-5 w-5 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
-                    <span className="text-gray-700">{detail}</span>
-                  </li>
-                ))}
-              </ul>
             </div>
           </div>
         </div>
@@ -396,7 +342,7 @@ export default function HowItWorks() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {safetyFeatures.map((feature, index) => {
               const IconComponent = feature.icon;
               return (
@@ -407,9 +353,6 @@ export default function HowItWorks() {
                   <h3 className="text-xl font-semibold text-gray-900 mb-4">
                     {feature.title}
                   </h3>
-                  <p className="text-gray-600">
-                    {feature.description}
-                  </p>
                 </div>
               );
             })}
@@ -473,6 +416,8 @@ export default function HowItWorks() {
           </div>
         </div>
       </section>
+
+      <Footer />
     </div>
   );
 }

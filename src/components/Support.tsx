@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
-import { HelpCircle, Mail, Search, Send, CheckCircle } from 'lucide-react';
+import { HelpCircle, Mail, Send, CheckCircle } from 'lucide-react';
+import Footer from './Footer';
 
 export default function Support() {
-  const [searchTerm, setSearchTerm] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState('');
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -11,74 +10,6 @@ export default function Support() {
     message: ''
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
-
-  const helpArticles = [
-    {
-      id: 1,
-      title: 'Como criar uma conta no TrampoFlex',
-      category: 'Primeiros Passos',
-      content: 'Guia completo para se cadastrar na plataforma',
-      views: 1250
-    },
-    {
-      id: 2,
-      title: 'Como postar minha primeira tarefa',
-      category: 'Primeiros Passos',
-      content: 'Passo a passo para publicar uma tarefa',
-      views: 980
-    },
-    {
-      id: 3,
-      title: 'Como escolher o melhor profissional',
-      category: 'Contratação',
-      content: 'Dicas para avaliar propostas e perfis',
-      views: 756
-    },
-    {
-      id: 4,
-      title: 'Formas de pagamento aceitas',
-      category: 'Pagamento',
-      content: 'Métodos de pagamento disponíveis na plataforma',
-      views: 642
-    },
-    {
-      id: 5,
-      title: 'Como resolver conflitos',
-      category: 'Suporte',
-      content: 'Procedimentos para resolver problemas',
-      views: 523
-    },
-    {
-      id: 6,
-      title: 'Política de cancelamento',
-      category: 'Políticas',
-      content: 'Regras para cancelamento de tarefas',
-      views: 445
-    },
-    {
-      id: 7,
-      title: 'Como aumentar suas chances como profissional',
-      category: 'Profissionais',
-      content: 'Dicas para conseguir mais trabalhos',
-      views: 834
-    },
-    {
-      id: 8,
-      title: 'Verificação de perfil',
-      category: 'Segurança',
-      content: 'Como verificar sua identidade na plataforma',
-      views: 612
-    }
-  ];
-
-  const categories = ['Todos', 'Primeiros Passos', 'Contratação', 'Pagamento', 'Suporte', 'Políticas', 'Profissionais', 'Segurança'];
-
-  const filteredArticles = helpArticles.filter(article => {
-    const matchesSearch = article.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         article.content.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesCategory = selectedCategory === '' || selectedCategory === 'Todos' || article.category === selectedCategory;
-    return matchesSearch && matchesCategory;
-  });
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
@@ -141,79 +72,6 @@ export default function Support() {
               <span className="ml-2 group-hover:translate-x-1 transition-transform">→</span>
             </button>
           </div>
-        </div>
-
-        {/* Search Help Articles */}
-        <div className="bg-white rounded-3xl shadow-xl p-8 lg:p-12 border border-gray-100 mb-16">
-          <div className="text-center mb-8">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">
-              Buscar Artigos de Ajuda
-            </h2>
-            <p className="text-gray-600">
-              Pesquise em nossa base de conhecimento para encontrar respostas rápidas
-            </p>
-          </div>
-
-          {/* Search Bar */}
-          <div className="max-w-2xl mx-auto mb-8">
-            <div className="relative">
-              <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
-              <input
-                type="text"
-                placeholder="Digite sua dúvida ou palavra-chave..."
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full pl-12 pr-4 py-4 border border-gray-300 rounded-xl text-lg focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all"
-              />
-            </div>
-          </div>
-
-          {/* Category Filter */}
-          <div className="flex flex-wrap justify-center gap-3 mb-8">
-            {categories.map(category => (
-              <button
-                key={category}
-                onClick={() => setSelectedCategory(category === 'Todos' ? '' : category)}
-                className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
-                  (selectedCategory === category || (selectedCategory === '' && category === 'Todos'))
-                    ? 'bg-green-600 text-white shadow-lg'
-                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                }`}
-              >
-                {category}
-              </button>
-            ))}
-          </div>
-
-          {/* Help Articles */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {filteredArticles.map(article => (
-              <div key={article.id} className="bg-gray-50 rounded-xl p-6 hover:bg-gray-100 transition-colors cursor-pointer border border-gray-200">
-                <div className="flex justify-between items-start mb-3">
-                  <span className="inline-block bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full">
-                    {article.category}
-                  </span>
-                  <span className="text-xs text-gray-500">{article.views} visualizações</span>
-                </div>
-                <h3 className="font-semibold text-gray-900 mb-2">{article.title}</h3>
-                <p className="text-gray-600 text-sm">{article.content}</p>
-              </div>
-            ))}
-          </div>
-
-          {filteredArticles.length === 0 && (
-            <div className="text-center py-8">
-              <div className="text-gray-400 mb-4">
-                <Search className="h-16 w-16 mx-auto" />
-              </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                Nenhum artigo encontrado
-              </h3>
-              <p className="text-gray-600">
-                Tente usar palavras-chave diferentes ou entre em contato conosco
-              </p>
-            </div>
-          )}
         </div>
 
         {/* Contact Form Section */}
@@ -342,6 +200,8 @@ export default function Support() {
           </div>
         </div>
       </div>
+      
+      <Footer />
     </div>
   );
 }

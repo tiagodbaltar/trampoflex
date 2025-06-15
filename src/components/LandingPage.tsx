@@ -5,9 +5,10 @@ interface LandingPageProps {
   onLoginClick: () => void;
   onSignupClick: () => void;
   onPostTaskClick: () => void;
+  onBrowseTasksClick: () => void;
 }
 
-export default function LandingPage({ onLoginClick, onSignupClick, onPostTaskClick }: LandingPageProps) {
+export default function LandingPage({ onLoginClick, onSignupClick, onPostTaskClick, onBrowseTasksClick }: LandingPageProps) {
   const features = [
     {
       icon: Shield,
@@ -33,6 +34,11 @@ export default function LandingPage({ onLoginClick, onSignupClick, onPostTaskCli
     'Aulas particulares',
     'Design gráfico'
   ];
+
+  const handleCategoryClick = (category: string) => {
+    // Navigate to browse tasks with the selected category
+    onBrowseTasksClick();
+  };
 
   return (
     <div className="min-h-screen bg-white">
@@ -153,7 +159,7 @@ export default function LandingPage({ onLoginClick, onSignupClick, onPostTaskCli
             {categories.map((category, index) => (
               <button
                 key={index}
-                onClick={onPostTaskClick}
+                onClick={() => handleCategoryClick(category)}
                 className="bg-gray-50 hover:bg-green-50 border border-gray-200 hover:border-green-200 rounded-lg p-4 text-center transition-all duration-300 hover:shadow-md group"
               >
                 <span className="text-gray-700 group-hover:text-green-600 font-medium">
@@ -203,8 +209,8 @@ export default function LandingPage({ onLoginClick, onSignupClick, onPostTaskCli
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <button
-              onClick={onPostTaskClick}
-              className="bg-white text-green-600 px-8 py-3 rounded-lg text-lg font-semibold hover:bg-gray-50 transition-colors"
+              onClick={onSignupClick}
+              className="bg-white text-green-600 px-8 py-3 rounded-lg text-lg font-semibold hover:bg-gray-50 transition-all duration-300 transform hover:scale-105 hover:shadow-lg"
             >
               Criar Conta Grátis
             </button>

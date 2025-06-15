@@ -23,6 +23,7 @@ function AppContent() {
   const [isPostTaskOpen, setIsPostTaskOpen] = useState(false);
   const [isFindWorkOpen, setIsFindWorkOpen] = useState(false);
   const [isAdminLoggedIn, setIsAdminLoggedIn] = useState(false);
+  const [browseTasksCategory, setBrowseTasksCategory] = useState<string>('');
 
   const handleLoginClick = () => {
     setAuthMode('login');
@@ -66,7 +67,8 @@ function AppContent() {
     setIsFindWorkOpen(false);
   };
 
-  const handleBrowseTasksClick = () => {
+  const handleBrowseTasksClick = (category?: string) => {
+    setBrowseTasksCategory(category || '');
     setCurrentPage('browse-tasks');
   };
 
@@ -118,7 +120,7 @@ function AppContent() {
   const renderPageContent = () => {
     switch (currentPage) {
       case 'browse-tasks':
-        return <BrowseTasks />;
+        return <BrowseTasks initialCategory={browseTasksCategory} />;
       case 'how-it-works':
         return <HowItWorks />;
       case 'support':
@@ -127,11 +129,14 @@ function AppContent() {
       default:
         if (user) {
           return (
-            <Dashboard 
-              onPostTaskClick={handlePostTaskClick}
-              onFindWorkClick={handleFindWorkClick}
-              onBrowseTasksClick={handleBrowseTasksClick}
-            />
+            <>
+              <Dashboard 
+                onPostTaskClick={handlePostTaskClick}
+                onFindWorkClick={handleFindWorkClick}
+                onBrowseTasksClick={() => handleBrowseTasksClick()}
+              />
+              <Footer />
+            </>
           );
         } else {
           return (
@@ -140,6 +145,7 @@ function AppContent() {
                 onLoginClick={handleLoginClick}
                 onSignupClick={handleSignupClick}
                 onPostTaskClick={handlePostTaskClick}
+                onBrowseTasksClick={() => handleBrowseTasksClick()}
               />
               <Footer />
             </>
@@ -155,7 +161,7 @@ function AppContent() {
         onSignupClick={handleSignupClick}
         onPostTaskClick={handlePostTaskClick}
         onFindWorkClick={handleFindWorkClick}
-        onBrowseTasksClick={handleBrowseTasksClick}
+        onBrowseTasksClick={() => handleBrowseTasksClick()}
         onHowItWorksClick={handleHowItWorksClick}
         onSupportClick={handleSupportClick}
         onHomeClick={handleHomeClick}

@@ -3,15 +3,17 @@ import { Search, MapPin, Calendar, DollarSign, User, MessageCircle, Filter, Map,
 import { mockTasks } from '../data/mockTasks';
 import { Task } from '../types';
 import { useAuth } from '../context/AuthContext';
+import Footer from './Footer';
 
 interface BrowseTasksProps {
   onClose?: () => void;
+  initialCategory?: string;
 }
 
-export default function BrowseTasks({ onClose }: BrowseTasksProps) {
+export default function BrowseTasks({ onClose, initialCategory }: BrowseTasksProps) {
   const { user } = useAuth();
   const [searchTerm, setSearchTerm] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState(initialCategory || '');
   const [selectedLocation, setSelectedLocation] = useState('');
   const [priceRange, setPriceRange] = useState({ min: '', max: '' });
   const [sortBy, setSortBy] = useState('newest');
@@ -139,6 +141,11 @@ export default function BrowseTasks({ onClose }: BrowseTasksProps) {
     setSelectedTask(null);
     setOfferMessage('');
     setOfferPrice('');
+  };
+
+  const handleLoginRedirect = () => {
+    // This would typically trigger the login modal or redirect
+    console.log('Redirect to login');
   };
 
   const TaskCard = ({ task }: { task: Task }) => (
@@ -442,7 +449,7 @@ export default function BrowseTasks({ onClose }: BrowseTasksProps) {
                       <div className="text-3xl font-bold text-green-600 mb-2">
                         R$ {selectedTask.budget.toLocaleString()}
                       </div>
-                      <p className="text-sm text-gray-600">Orçamento sugerido</p>
+                      <p className="text-sm text-gray-600">Meu Orçamento</p>
                     </div>
 
                     <div className="space-y-4 mb-6">
@@ -496,12 +503,21 @@ export default function BrowseTasks({ onClose }: BrowseTasksProps) {
                         </button>
                       </div>
                     ) : (
-                      <div className="text-center">
+                      <div className="text-center space-y-3">
                         <p className="text-gray-600 text-sm mb-3">
                           Faça login para enviar propostas
                         </p>
-                        <button className="w-full bg-green-600 text-white py-3 rounded-lg font-semibold hover:bg-green-700 transition-colors">
+                        <button 
+                          onClick={handleLoginRedirect}
+                          className="w-full bg-green-600 text-white py-3 rounded-lg font-semibold hover:bg-green-700 transition-colors"
+                        >
                           Fazer Login
+                        </button>
+                        <button 
+                          onClick={handleLoginRedirect}
+                          className="w-full text-green-600 py-2 text-sm hover:text-green-700 transition-colors"
+                        >
+                          Criar conta
                         </button>
                       </div>
                     )}
@@ -516,6 +532,8 @@ export default function BrowseTasks({ onClose }: BrowseTasksProps) {
           </div>
         </div>
       )}
+
+      <Footer />
     </div>
   );
 }
